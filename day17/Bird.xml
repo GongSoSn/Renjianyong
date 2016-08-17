@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 根标签 -->
+<birds>
+	<bird id="01">
+		<!-- 名称 -->
+		<name>红色小鸟</name>
+		<!-- 攻击力 -->
+		<ATK>200</ATK>
+		<!-- 命中率 -->
+		<hitRate>80</hitRate>
+	</bird>
+	<![CDATA[
+	你好，CDATA]]>
+</birds>
