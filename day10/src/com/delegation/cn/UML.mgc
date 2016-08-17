@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ClassDiagram>
+    <Class name="com.delegation.cn.SpaceShipDele" x="114" y="41">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Association
+            destinationClassName="com.delegation.cn.SpaceShipControls"
+            endpointName="shipFather" kind="Simple"/>
+        <Communication destinationClassName="com.delegation.cn.SpaceShipControls"/>
+    </Class>
+    <Class name="com.delegation.cn.SpaceShipControls" x="356" y="42">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+    </Class>
+    <Class name="com.delegation.cn.SpaceShipExtends" x="107" y="154">
+        <AttributesDisplayFilter public-accepted="true"
+            private-accepted="true" protected-accepted="true"
+            default-accepted="true" static-accepted="false"/>
+        <MethodDisplayFilter public-accepted="true"
+            private-accepted="false" protected-accepted="false"
+            default-accepted="false" static-accepted="false"
+            accessors-accepted="false" constructors-accepted="false"/>
+        <Extension destinationClassName="com.delegation.cn.SpaceShipControls"/>
+        <Communication destinationClassName="com.delegation.cn.SpaceShipControls"/>
+    </Class>
+</ClassDiagram>
