@@ -1,0 +1,145 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes for AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (memory/allocation.inline.hpp:61), pid=7188, tid=19580
+#
+# JRE version:  (7.0_79-b15) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.79-b02 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000026fe000):  JavaThread "Unknown thread" [_thread_in_vm, id=19580, stack(0x0000000002c00000,0x0000000002d00000)]
+
+Stack: [0x0000000002c00000,0x0000000002d00000]
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00000000026fe000 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=19580, stack(0x0000000002c00000,0x0000000002d00000)]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 17920K, used 317K [0x00000000ecd00000, 0x00000000ee080000, 0x0000000100000000)
+  eden space 15872K, 2% used [0x00000000ecd00000,0x00000000ecd4f618,0x00000000edc80000)
+  from space 2048K, 0% used [0x00000000ede80000,0x00000000ede80000,0x00000000ee080000)
+  to   space 2048K, 0% used [0x00000000edc80000,0x00000000edc80000,0x00000000ede80000)
+ ParOldGen       total 38912K, used 0K [0x00000000c6800000, 0x00000000c8e00000, 0x00000000ecd00000)
+  object space 38912K, 0% used [0x00000000c6800000,0x00000000c6800000,0x00000000c8e00000)
+ PSPermGen       total 21504K, used 679K [0x00000000c1600000, 0x00000000c2b00000, 0x00000000c6800000)
+  object space 21504K, 3% used [0x00000000c1600000,0x00000000c16a9f80,0x00000000c2b00000)
+
+Card table byte_map: [0x0000000005ec0000,0x00000000060c0000] byte_map_base: 0x00000000058b5000
+
+Polling page: 0x0000000002620000
+
+Code Cache  [0x0000000002e00000, 0x0000000003070000, 0x0000000005e00000)
+ total_blobs=38 nmethods=0 adapters=20 free_code_cache=48889Kb largest_free_block=50062528
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (10 events):
+Event: 0.023 loading class 0x0000000002d49260
+Event: 0.023 loading class 0x0000000002d49260 done
+Event: 0.023 loading class 0x0000000002d492b0
+Event: 0.023 loading class 0x0000000002d492b0 done
+Event: 0.023 loading class 0x0000000002d49300
+Event: 0.023 loading class 0x0000000002d49300 done
+Event: 0.024 loading class 0x0000000002d4a080
+Event: 0.024 loading class 0x0000000002d4a080 done
+Event: 0.024 loading class 0x0000000002d49ca0
+Event: 0.024 loading class 0x0000000002d49ca0 done
+
+
+Dynamic libraries:
+0x00007ff776270000 - 0x00007ff7762a3000 	F:\Develop\Java\version1.7\jre1.7.0_79\bin\javaw.exe
+0x00007ffb22c00000 - 0x00007ffb22dc1000 	C:\WINDOWS\SYSTEM32\ntdll.dll
+0x00007ffb20ec0000 - 0x00007ffb20f6d000 	C:\WINDOWS\system32\KERNEL32.DLL
+0x00007ffb1fd10000 - 0x00007ffb1fef8000 	C:\WINDOWS\system32\KERNELBASE.dll
+0x00007ffb20090000 - 0x00007ffb20137000 	C:\WINDOWS\system32\ADVAPI32.dll
+0x00007ffb1fff0000 - 0x00007ffb2008d000 	C:\WINDOWS\system32\msvcrt.dll
+0x00007ffb202d0000 - 0x00007ffb2032b000 	C:\WINDOWS\system32\sechost.dll
+0x00007ffb22ae0000 - 0x00007ffb22bfc000 	C:\WINDOWS\system32\RPCRT4.dll
+0x00007ffb20b00000 - 0x00007ffb20c56000 	C:\WINDOWS\system32\USER32.dll
+0x00007ffb20140000 - 0x00007ffb202c6000 	C:\WINDOWS\system32\GDI32.dll
+0x00007ffb1bc90000 - 0x00007ffb1bf04000 	C:\WINDOWS\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.10586.494_none_a2d8b04ea53e3145\COMCTL32.dll
+0x00007ffb22620000 - 0x00007ffb2289d000 	C:\WINDOWS\system32\combase.dll
+0x00007ffb1f290000 - 0x00007ffb1f2fa000 	C:\WINDOWS\system32\bcryptPrimitives.dll
+0x00007ffb20880000 - 0x00007ffb208bb000 	C:\WINDOWS\system32\IMM32.DLL
+0x00007ffb1f0f0000 - 0x00007ffb1f121000 	C:\Windows\system32\nvinitx.dll
+0x00007ffb1f0e0000 - 0x00007ffb1f0ea000 	C:\WINDOWS\SYSTEM32\VERSION.dll
+0x000000000f000000 - 0x000000000f006000 	C:\Program Files\NVIDIA Corporation\CoProcManager\_etoured.dll
+0x00007ffb1cb30000 - 0x00007ffb1cb62000 	C:\Program Files\NVIDIA Corporation\CoProcManager\nvd3d9wrapx.dll
+0x00007ffb203a0000 - 0x00007ffb207c9000 	C:\WINDOWS\system32\SETUPAPI.dll
+0x00007ffb1ff00000 - 0x00007ffb1ff43000 	C:\WINDOWS\system32\CFGMGR32.dll
+0x00007ffb1d520000 - 0x00007ffb1d542000 	C:\Program Files\NVIDIA Corporation\CoProcManager\nvdxgiwrapx.dll
+0x0000000054a70000 - 0x0000000054b42000 	F:\Develop\Java\version1.7\jre1.7.0_79\bin\msvcr100.dll
+0x0000000054290000 - 0x0000000054a65000 	F:\Develop\Java\version1.7\jre1.7.0_79\bin\server\jvm.dll
+0x00007ffb20a80000 - 0x00007ffb20a88000 	C:\WINDOWS\system32\PSAPI.DLL
+0x00007ffb14bd0000 - 0x00007ffb14bd9000 	C:\WINDOWS\SYSTEM32\WSOCK32.dll
+0x00007ffb1d4c0000 - 0x00007ffb1d4e3000 	C:\WINDOWS\SYSTEM32\WINMM.dll
+0x00007ffb20330000 - 0x00007ffb2039b000 	C:\WINDOWS\system32\WS2_32.dll
+0x00007ffb1d490000 - 0x00007ffb1d4bc000 	C:\WINDOWS\SYSTEM32\WINMMBASE.dll
+0x0000000054280000 - 0x000000005428f000 	F:\Develop\Java\version1.7\jre1.7.0_79\bin\verify.dll
+0x0000000054250000 - 0x0000000054278000 	F:\Develop\Java\version1.7\jre1.7.0_79\bin\java.dll
+0x0000000054230000 - 0x0000000054245000 	F:\Develop\Java\version1.7\jre1.7.0_79\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Dfile.encoding=UTF-8 
+java_command: com.lecheng.abgame.main.abGame
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+JAVA_HOME=F:\Develop\Java\version1.7\jdk1.7.0_79
+CLASSPATH=.;F:\Develop\Java\version1.7\jdk1.7.0_79\bin:F:\Develop\Java\version1.7\jdk1.7.0_79\jre\bin;
+PATH=C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Broadcom\Broadcom 802.11 Network Adapter\Driver;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\2.0\bin\x64;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;F:\Develop\Java\version1.7\jdk1.7.0_79\bin;F:\Develop\Java\apache-maven-3.3.9\bin;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5.4 & MySQL Utilities 1.5.4 1.5\;C:\Program Files (x86)\MySQL\MySQL Fabric 1.5.4 & MySQL Utilities 1.5.4 1.5\Doctrine extensions for PHP\;F:\Develop\Git\cmd;F:\Develop\nodejs\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\renjianyong\AppData\Roaming\npm
+USERNAME=renjianyong
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 42 Stepping 7, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 8.1 , 64 bit Build 9600 
+
+CPU:total 4 (2 cores per cpu, 2 threads per core) family 6 model 42 stepping 7, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, ht, tsc, tscinvbit
+
+Memory: 4k page, physical 3761172k(662076k free), swap 13302800k(4812k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (24.79-b02) for windows-amd64 JRE (1.7.0_79-b15), built on Apr 10 2015 12:36:16 by "java_re" with unknown MS VC++:1600
+
+time: Tue Aug 02 19:33:59 2016
+elapsed time: 0 seconds
+
