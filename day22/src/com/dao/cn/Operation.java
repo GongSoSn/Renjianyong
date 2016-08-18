@@ -91,6 +91,7 @@ public class Operation {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        // 转型，返回想要的对象
         return (T) obj;
     }
 }
