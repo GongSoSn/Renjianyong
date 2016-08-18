@@ -1,6 +1,6 @@
 package com.lecheng.abgame.main;
 
-import com.lecheng.abgame.bean.Login;
+import com.lecheng.abgame.bean.Score;
 import com.lecheng.abgame.bean.Player;
 import com.lecheng.abgame.ui.Menu;
 
@@ -43,7 +43,7 @@ public class AbGame {
 
     public static void main(String[] args) {
         Player[] players = new Player[10];
-        Login login = new Login();
+        Score login = new Score();
         AbGame ab = new AbGame();
         ab.start();
     }
