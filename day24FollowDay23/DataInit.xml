@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<data> 
+  <birds> 
+    <bird id="1"> 
+      <name>青峰大辉</name>  
+      <gjValue>200</gjValue>  
+      <hitValue>80</hitValue> 
+    </bird>  
+    <bird id="2"> 
+      <name>黄濑凉太</name>  
+      <gjValue>180</gjValue>  
+      <hitValue>60</hitValue> 
+    </bird>  
+    <bird id="3"> 
+      <name>赤司征十郎</name>  
+      <gjValue>200</gjValue>  
+      <hitValue>85</hitValue> 
+    </bird> 
+  </birds>  
+  <admin> 
+    <loginName>111</loginName>  
+    <passWord>111</passWord>  
+    <loginTimes>5</loginTimes> 
+  </admin> 
+</data>
