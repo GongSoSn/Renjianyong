@@ -7,8 +7,6 @@ package com.lecheng.abgame.bean;
  *
  */
 public class Player extends Person {
-
-
     // 封装玩家的昵称
     private String nickName;
     // 封装玩家的性别

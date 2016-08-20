@@ -31,7 +31,7 @@ public class checkUtil {
         while (nameFlag) {
             System.out.println("请输入新增玩家的用户名:");
             playerName = InputHelper.getString();
-            if (playerName.matches("[a-zA-Z]\\w{5,9}")) {
+            if (playerName.matches("[a-zA-Z]\\w{3,9}")) {
                 nameFlag = false;
             } else {
                 System.out.println("玩家姓名不符合要求，请重新输入||格式[a-zA-Z]\\w{5,9} !!!!");
@@ -48,10 +48,10 @@ public class checkUtil {
         while (nickNameFlag) {
             System.out.println("请输入新增玩家的昵称:");
             checkNickName = InputHelper.getString();
-            if (checkNickName.matches("[\u4e00-\u9fa5\\w]{1,5}")) {
+            if (checkNickName.matches("[\u4e00-\u9fa5\\w]{1,9}")) {
                 nickNameFlag = false;
             } else {
-                System.out.println("玩家昵称不符合要求，请重新输入 ||格式[\u4e00-\u9fa5\\w]{1,5}!!!!");
+                System.out.println("玩家昵称不符合要求，请重新输入 ||格式[\u4e00-\u9fa5\\w]{1,9}!!!!");
             }
         }
 

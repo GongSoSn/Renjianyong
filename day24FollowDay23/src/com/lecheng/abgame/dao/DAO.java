@@ -24,9 +24,7 @@ import com.lecheng.abgame.reflection.ReflectionUtils;
 public class DAO {
 
     // update(INSERT,UPDATE,DELETE)
-    public int update(String sql, Object... args) {
-        // 数据库连接对象
-        Connection conn = null;
+    public int update(Connection conn, String sql, Object... args) {
         // 预编译语句处理对象
         PreparedStatement ps = null;
         //
@@ -34,6 +32,8 @@ public class DAO {
         try {
             // 获取数据库连接对象
             conn = JDBCUtils.getConnection();
+            // 开始事务
+            JDBCUtils.beginTransaction(conn);
             // 获取PreparedStatement对象
             ps = conn.prepareStatement(sql);
             if (args != null) {
@@ -44,8 +44,12 @@ public class DAO {
             }
             // 执行更新语句
             count = ps.executeUpdate();
+            // 提交事务
+            JDBCUtils.commit(conn);
         } catch (Exception e) {
             e.printStackTrace();
+            // 回滚事务(如果在执行失败的情况下)
+            JDBCUtils.rollback(conn);
         } finally {
             // 关闭资源
             JDBCUtils.closeResourse(null, ps, conn);
@@ -53,29 +57,34 @@ public class DAO {
         return count;
     }
 
-    // 清空表数据
-    public boolean truncateData(String sql) {
-        Connection conn = null;
+    /*
+     * 清空表数据
+     *
+     */
+    public boolean truncateData(Connection conn, String sql) {
         PreparedStatement pstmt = null;
         boolean b = true;
         try {
             // 获取数据库连接
-            conn = JDBCUtils.getConnection();
+            // conn = JDBCUtils.getConnection();
+            // 开始事务
+            JDBCUtils.beginTransaction(conn);
             pstmt = conn.prepareStatement(sql);
             // 如果第一个结果是更新计数或者没有结果，则返回 false
             b = pstmt.execute();
-
+            // 提交事务
+            JDBCUtils.commit(conn);
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            JDBCUtils.closeResourse(null, pstmt, conn);
+            // 回滚事务
+            JDBCUtils.rollback(conn);
         }
         return b;
     }
 
     // 查询操作(返回一个对应目标对象)
-    public <T> T getForSingle(Class<T> clazz, String sql, Object... args) {
-        List<T> list = this.getForList(clazz, sql, args);
+    public <T> T getForSingle(Connection conn, Class<T> clazz, String sql, Object... args) {
+        List<T> list = this.getForList(conn, clazz, sql, args);
         T result = null;
         if (list.size() > 0) {
             result = list.get(0);
@@ -84,11 +93,9 @@ public class DAO {
     }
 
     // 查询操作(返回多个对应目标对象)
-    public <T> List<T> getForList(Class<T> clazz, String sql, Object... args) {
+    public <T> List<T> getForList(Connection conn, Class<T> clazz, String sql, Object... args) {
         // 存放目标对象的List
         List<T> list = new ArrayList<>();
-        // 数据库连接对象
-        Connection conn = null;
         // PreparedStatement SQL 预编译对象
         PreparedStatement ps = null;
         // 结果集对象
@@ -96,6 +103,8 @@ public class DAO {
         try {
             // 建立数据库连接
             conn = JDBCUtils.getConnection();
+            // 开始事务
+            JDBCUtils.beginTransaction(conn);
             // 获取PreparedStatement对象
             ps = conn.prepareStatement(sql);
             // 判断是不是查询全部
@@ -107,12 +116,16 @@ public class DAO {
             }
             // 执行操作 得到结果集
             rs = ps.executeQuery();
+            // 提交事务
+            JDBCUtils.commit(conn);
             // 存放所有目标对象的Map
             List<Map<String, Object>> listDB = handleResultSet(rs);
             // 遍历Map，实例化对象
             list = getObject(clazz, listDB);
         } catch (Exception e) {
             e.printStackTrace();
+            // 回滚事务
+            JDBCUtils.rollback(conn);
         } finally {
             // 关闭资源
             JDBCUtils.closeResourse(rs, ps, conn);
