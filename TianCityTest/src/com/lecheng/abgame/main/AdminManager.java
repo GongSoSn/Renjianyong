@@ -5,12 +5,11 @@ import java.util.List;
 
 import com.lecheng.abgame.JDBC.JDBCUtils;
 import com.lecheng.abgame.bean.Bird;
-import com.lecheng.abgame.bean.BlackBird;
-import com.lecheng.abgame.bean.BlueBird;
+import com.lecheng.abgame.bean.BirdFactory;
 import com.lecheng.abgame.bean.Game;
 import com.lecheng.abgame.bean.Login;
 import com.lecheng.abgame.bean.Player;
-import com.lecheng.abgame.bean.RedBird;
+import com.lecheng.abgame.bean.Score;
 import com.lecheng.abgame.dao.DAO;
 import com.lecheng.abgame.exception.PlayerNameSameException;
 import com.lecheng.abgame.game.DataInit;
@@ -177,13 +176,13 @@ public class AdminManager {
         Bird bird = null;
         switch (type) {
             case 1:// 修改RedBird
-                bird = new RedBird();
+                bird = BirdFactory.RedBird();
                 break;
             case 2:// 修改BlueBird
-                bird = new BlueBird();
+                bird = BirdFactory.BlueBird();
                 break;
             case 3:// 修改BlackBird
-                bird = new BlackBird();
+                bird = BirdFactory.BlackBird();
                 break;
             default:
                 System.out.println("没有此类型小鸟 ！");
@@ -208,6 +207,7 @@ public class AdminManager {
     }
 
     // 修改玩家
+    @SuppressWarnings("unchecked")
     public void modPlayer() {
         // 首先遍历一下玩家信息
         boolean flag = queryPlayer();
@@ -220,23 +220,39 @@ public class AdminManager {
             @SuppressWarnings("rawtypes")
             List paras = (List) list.get(1);
             try {
-
                 Object[] objs = new Object[5];
-                if (paras.size() > 0) {
-                    for (int i = 1, j = 0; i < paras.size(); i++) {
-                        if (paras.get(0) != null) {
-                            // 检查重名
-                            chkSameName((String) paras.get(0));
-                            objs[0] = paras.get(0);
-                            j++;
-                        } else if (paras.get(i) != null) {
-                            objs[j] = paras.get(i);
-                            j++;
-                        }
+                for (int i = 0, len = objs.length; i < len;) {
+                    if (paras.get(0) != null) {
+                        objs[i] = paras.get(0);
+                        i++;
+                        // 检查重名
+                        chkSameName((String) paras.get(0));
+                        paras.set(0, null);
+
+                    } else if (paras.get(1) != null) {
+                        objs[i] = paras.get(1);
+                        paras.set(1, null);
+                        i++;
+                    } else if (paras.get(2) != null) {
+                        objs[i] = paras.get(2);
+                        paras.set(2, null);
+                        i++;
+                    } else if (paras.get(3) != null) {
+                        objs[i] = paras.get(3);
+                        paras.set(3, null);
+                        i++;
+                    } else if (paras.get(4) != null) {
+                        objs[i] = paras.get(4);
+                        paras.set(4, null);
+                        i++;
+                    } else {
+                        i = 5;
                     }
                 }
-                dao.update(sql, objs);
-                System.out.println("修改玩家成功！");
+                int count = dao.update(sql, objs);
+                if (count > 0) {
+                    System.out.println("修改玩家成功！");
+                }
             } catch (PlayerNameSameException e) {
                 System.out.println("错误代码：" + e.getErrCode() + "\n" + "错误信息：" + e.getErrMsg() + "\n"
                         + "修改玩家失败！");
@@ -245,6 +261,7 @@ public class AdminManager {
     }
 
     // 删除玩家
+    @SuppressWarnings("unchecked")
     public void delePlayer() {
         // 首先遍历一下玩家信息
         boolean flag = queryPlayer();
@@ -260,11 +277,14 @@ public class AdminManager {
                 String sql1 = SQLHelper.getSQL("setForeign");
                 // 然后执行全部删除操作
                 String sql2 = SQLHelper.getSQL("clearPlayer");
+                // 玩家的游戏信息全部删除
+                String sql3 = SQLHelper.getSQL("clearAll");
                 conn = JDBCUtils.getConnection();
                 // 开始事务
                 JDBCUtils.beginTransaction(conn);
                 try {
                     dao.truncateData(conn, sql1);
+                    dao.truncateData(conn, sql3);
                     boolean b = dao.truncateData(conn, sql2);
                     if (!b) {
                         System.out.println("全部删除成功！");
@@ -278,9 +298,15 @@ public class AdminManager {
 
             } else {
                 System.out.println("输入需要删除的玩家ID:");
-                String deleName = InputHelper.getString();
-                String sql = SQLHelper.getSQL("deleteByID");
-                int count = dao.update(sql, deleName);
+                String deleID = InputHelper.getString();
+                String sql1 = SQLHelper.getSQL("deleteByID");
+                String sql3 = SQLHelper.getSQL("queryScoreByID");
+                String sql2 = SQLHelper.getSQL("deleteScoreByID");
+                List<Score> scores = dao.getForList(Score.class, sql3, deleID);
+                if (scores != null) {
+                    dao.update(sql2, deleID);
+                }
+                int count = dao.update(sql1, deleID);
                 if (count > 0) {
                     System.out.println("玩家删除成功！");
                 } else {

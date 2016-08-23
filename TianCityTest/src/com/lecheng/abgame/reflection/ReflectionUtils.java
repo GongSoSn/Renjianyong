@@ -9,7 +9,7 @@ public class ReflectionUtils {
 
 
     /**
-     * /** 循环向上转型, 获取对象的 DeclaredMethod
+     * 循环向上转型, 获取对象的 DeclaredMethod
      */
     public static Method getDeclaredMethod(Object object, String methodName,
             Class<?>[] parameterTypes) {

@@ -15,7 +15,7 @@ public class Menu {
     // 主页面
     public static int getMainUI() {
         System.out.println("**********************************************\n");
-        System.out.println("\t\t洛  奇  英  雄  传\t\t\n");
+        System.out.println("\t\t愤  怒  的  小  鸟\t\t\n");
         System.out.print("请选择登录方式:      ");
         System.out.println("1、玩家登陆           2、管理员登录        0、退出");
         System.out.println("\n**********************************************\n");
@@ -37,7 +37,7 @@ public class Menu {
     // 玩家登录页面
     public static int getPlayerUI() {
         System.out.println("**********************************************\n");
-        System.out.println("\t\t洛  奇  英  雄  传\t\t\n");
+        System.out.println("\t\t愤  怒  的  小  鸟\t\t\n");
         System.out.println("\t\t1、开始游戏           \n\t\t2、查看成绩        \n\t\t0、返回上级");
         System.out.println("\n**********************************************\n");
         System.out.println("请选择 >>>>>>");

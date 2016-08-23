@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * @author renjianyong
- *
  */
 public class modPlayerHelper {
 
@@ -97,7 +96,6 @@ public class modPlayerHelper {
                     if (yes4.equalsIgnoreCase("n")) {
                         list.add(4, null);
                         bb = false;
-                        sql += ("where id = " + id);
                     } else {
                         System.out.println("请输入修改后的年龄：");
                         age = checkUtil.checkAge();

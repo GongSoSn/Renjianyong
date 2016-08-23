@@ -35,16 +35,25 @@ public class DAO {
             conn = JDBCUtils.getConnection();
             // 获取PreparedStatement对象
             ps = conn.prepareStatement(sql);
-            if (args != null) {
+            int stop = 0;
+            if (args.length != 0) {
                 // 填充预编译语句中的占位符
                 for (int i = 0, len = args.length; i < len; i++) {
                     if (args[i] != null) {
                         ps.setObject(i + 1, args[i]);
+                        stop++;
                     }
                 }
+                if (stop > 0) {
+                    // 执行更新语句
+                    count = ps.executeUpdate();
+                } else {
+                    System.out.println("当前用户没有做任何修改！");
+                }
+            } else {
+                // 执行更新语句
+                count = ps.executeUpdate();
             }
-            // 执行更新语句
-            count = ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -54,10 +63,7 @@ public class DAO {
         return count;
     }
 
-    /*
-     * 清空表数据
-     *
-     */
+    // 清空表数据
     public boolean truncateData(Connection conn, String sql) throws Exception {
         PreparedStatement pstmt = null;
         boolean b = true;
