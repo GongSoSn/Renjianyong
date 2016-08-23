@@ -11,6 +11,9 @@ import java.util.Scanner;
  *
  */
 public class Binary {
+
+
+
     /*
      * 非递归二分查找算法 参数:整型数组,需要比较的数.
      */
