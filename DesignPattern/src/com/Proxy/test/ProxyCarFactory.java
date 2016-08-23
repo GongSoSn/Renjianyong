@@ -8,10 +8,16 @@ package com.Proxy.test;
  *
  */
 public class ProxyCarFactory implements CarFactory {
-    private CarFactory car;
+    private MyCar car;
 
-    public ProxyCarFactory(CarFactory car) {
-        this.car = car;
+    // 第一种方式初始化
+    // public ProxyCarFactory(CarFactory car) {
+    // this.car = car;
+    // }
+
+    // 第二种方法初始化
+    public ProxyCarFactory() {
+        this.car = new MyCar();
     }
 
     @Override
