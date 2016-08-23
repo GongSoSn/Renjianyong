@@ -1,7 +1,7 @@
 package com.lecheng.abgame.ui;
 
+import com.lecheng.abgame.bean.Bird;
 import com.lecheng.abgame.bean.Player;
-import com.lecheng.abgame.game.Bird;
 import com.lecheng.abgame.game.DataInit;
 import com.lecheng.abgame.util.InputHelper;
 

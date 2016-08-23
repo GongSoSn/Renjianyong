@@ -9,9 +9,9 @@ import java.util.List;
 import org.dom4j.Document;
 import org.dom4j.Element;
 
+import com.lecheng.abgame.bean.Bird;
 import com.lecheng.abgame.bean.Login;
-import com.lecheng.abgame.game.Bird;
-import com.lecheng.abgame.game.RedBird;
+import com.lecheng.abgame.bean.RedBird;
 
 /**
  * @author renjianyong

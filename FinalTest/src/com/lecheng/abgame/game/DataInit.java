@@ -8,6 +8,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.io.SAXReader;
 
+import com.lecheng.abgame.bean.Bird;
 import com.lecheng.abgame.bean.Login;
 import com.lecheng.abgame.util.XMLParser;
 

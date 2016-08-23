@@ -2,6 +2,7 @@ package com.lecheng.abgame.game;
 
 import java.util.Random;
 
+import com.lecheng.abgame.bean.Bird;
 import com.lecheng.abgame.bean.Player;
 
 /**

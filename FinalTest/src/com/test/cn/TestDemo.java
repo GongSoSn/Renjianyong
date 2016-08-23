@@ -5,11 +5,14 @@ package com.test.cn;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.List;
 
 import org.junit.Test;
 
 import com.lecheng.abgame.JDBC.JDBCUtils;
+import com.lecheng.abgame.bean.Player;
 import com.lecheng.abgame.dao.DAO;
+import com.lecheng.abgame.util.SQLHelper;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
@@ -23,14 +26,13 @@ public class TestDemo {
         String sql =
                 "insert into game(g_name,g_count,g_countscore,g_countavg,g_gno,g_index) select s.pname g_name,s.count g_count,s.sumscore g_countscore,s.s_avg g_countavg,g_no g_gno,t_index g_index from t_grade g,(select name pname,count(s_id) count,sum(s_score) sumscore,AVG(s_score) s_avg from t_player p,t_score s where id = s_id group by s_id) as s where s.s_avg between l_value and h_value;";
         DAO dao = new DAO();
-        Connection conn = JDBCUtils.getConnection();
-        int a = dao.update(conn, sql, null);
+        int a = dao.update(sql);
         System.out.println(a);
 
     }
 
     @Test
-    public void test02() {
+    public void test02() throws Exception {
         String sql = "truncate table t_player";
         DAO dao = new DAO();
         Connection conn = JDBCUtils.getConnection();
@@ -129,6 +131,22 @@ public class TestDemo {
             e.printStackTrace();
         } finally {
             JDBCUtils.closeResourse(null, truncateData(conn, sql2), conn);
+        }
+    }
+
+    // 测试从外部文件中读取SQL
+    @Test
+    public void testGetSQLs() throws Exception {
+        // Properties prop = new Properties();
+        // InputStream in = new FileInputStream(new File("sqls.properties"));
+        // prop.load(in);
+        // String sql = prop.getProperty("SELECTE");
+        // System.out.println(sql);
+        String sql = SQLHelper.getSQL("selectAll_player");
+        DAO dao = new DAO();
+        List<Player> list = dao.getForList(Player.class, sql);
+        for (Player p : list) {
+            System.out.println(p);
         }
     }
 }

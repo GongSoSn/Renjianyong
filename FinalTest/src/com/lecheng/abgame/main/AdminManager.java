@@ -4,19 +4,20 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.lecheng.abgame.JDBC.JDBCUtils;
+import com.lecheng.abgame.bean.Bird;
+import com.lecheng.abgame.bean.BlackBird;
+import com.lecheng.abgame.bean.BlueBird;
 import com.lecheng.abgame.bean.Game;
 import com.lecheng.abgame.bean.Login;
 import com.lecheng.abgame.bean.Player;
+import com.lecheng.abgame.bean.RedBird;
 import com.lecheng.abgame.dao.DAO;
 import com.lecheng.abgame.exception.PlayerNameSameException;
-import com.lecheng.abgame.game.Bird;
-import com.lecheng.abgame.game.BlackBird;
-import com.lecheng.abgame.game.BlueBird;
 import com.lecheng.abgame.game.DataInit;
-import com.lecheng.abgame.game.RedBird;
 import com.lecheng.abgame.ui.Menu;
 import com.lecheng.abgame.util.InputHelper;
 import com.lecheng.abgame.util.PlayerHelper;
+import com.lecheng.abgame.util.SQLHelper;
 import com.lecheng.abgame.util.XMLMod;
 
 public class AdminManager {
@@ -211,18 +212,15 @@ public class AdminManager {
         // 首先遍历一下玩家信息
         boolean flag = queryPlayer();
         if (flag) {
-            // ①获取需要修改的玩家(通过匹配姓名找到需要修改的玩家)
             System.out.println("请您输入需要修改玩家的ID:");
             int modNo = InputHelper.getInt();
-            // 判断是否存在此玩家
             String sql =
                     "update t_player set name=?, pass=?,nickname = ?,sex = ?,age = ? where id = ?";
             Player player = PlayerHelper.getPlayerData();
-            Connection conn = JDBCUtils.getConnection();
             try {
                 // 检查重名
                 chkSameName(player);
-                dao.update(conn, sql, player.getName(), player.getPass(), player.getNickName(),
+                dao.update(sql, player.getName(), player.getPass(), player.getNickName(),
                         player.getSex(), player.getAge(), modNo);
                 System.out.println("修改玩家成功！");
             } catch (PlayerNameSameException e) {
@@ -239,22 +237,31 @@ public class AdminManager {
         if (flag) {
             System.out.println("是否全部删除？ Y [Yes] 其他 [No]");
             String yes = InputHelper.getString();
+            Connection conn = null;
             if (yes.equalsIgnoreCase("Y")) {
-                String sql1 = "set foreign_key_checks = 0";
-                String sql2 = "truncate table t_player";
-                Connection conn = JDBCUtils.getConnection();
-                dao.truncateData(conn, sql1);
-                boolean b = dao.truncateData(conn, sql2);
-                if (!b) {
-                    System.out.println("全部删除成功！");
+                // String sql1 = "set foreign_key_checks = 0";
+                // String sql2 = "truncate table t_player";
+                String sql1 = SQLHelper.getSQL("setForeign");
+                String sql2 = SQLHelper.getSQL("clearPlayer");
+                conn = JDBCUtils.getConnection();
+                JDBCUtils.beginTransaction(conn);
+                try {
+                    dao.truncateData(conn, sql1);
+                    boolean b = dao.truncateData(conn, sql2);
+                    if (!b) {
+                        System.out.println("全部删除成功！");
+                    }
+                    JDBCUtils.commit(conn);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    JDBCUtils.closeResourse(null, null, conn);
                 }
-                JDBCUtils.closeResourse(null, null, conn);
+
             } else {
                 System.out.println("输入需要删除的玩家ID:");
                 String deleName = InputHelper.getString();
                 String sql = "delete from t_player where id = ?";
-                Connection conn = JDBCUtils.getConnection();
-                int count = dao.update(conn, sql, deleName);
+                int count = dao.update(sql, deleName);
                 if (count > 0) {
                     System.out.println("玩家删除成功！");
                 } else {
@@ -271,10 +278,10 @@ public class AdminManager {
             // 检查是否存在重名问题
             chkSameName(player);
             // SQL
-            String addSQL = "insert into t_player values(null,?,?,?,?,?)";
-            Connection conn = JDBCUtils.getConnection();
+            // String addSQL = "insert into t_player values(null,?,?,?,?,?)";
+            String addSQL = SQLHelper.getSQL("addPlayer");
             // 调用添加玩家方法
-            dao.update(conn, addSQL, player.getName(), player.getPass(), player.getNickName(),
+            dao.update(addSQL, player.getName(), player.getPass(), player.getNickName(),
                     player.getSex(), player.getAge());
             System.out.println("添加玩家成功！");
         } catch (PlayerNameSameException e) {
@@ -285,18 +292,19 @@ public class AdminManager {
 
     // 检查玩家是否重名
     public void chkSameName(Player player) throws PlayerNameSameException {
-        String sql = "select id,name,pass,nickname nickName,sex,age from t_player where name = ?";
-        Connection conn = JDBCUtils.getConnection();
-        Player p = dao.getForSingle(conn, Player.class, sql, player.getName());
+        // String sql = "select id,name,pass,nickname nickName,sex,age from t_player where name =
+        // ?";
+        String sql = SQLHelper.getSQL("chkSameName");
+        Player p = dao.getForSingle(Player.class, sql, player.getName());
         PlayerNameSameException.checkNameSame(p);
     }
 
     // 查询玩家方法
     public boolean queryPlayer() {
         boolean flag = true;
-        String sql = "select id,name,pass,nickname nickName,sex,age from t_player";
-        Connection conn = JDBCUtils.getConnection();
-        List<Player> players = dao.getForList(conn, Player.class, sql, null);
+        // String sql = "select id,name,pass,nickname nickName,sex,age from t_player";
+        String sql = SQLHelper.getSQL("searchPlayer");
+        List<Player> players = dao.getForList(Player.class, sql);
         // 判断有没有玩家信息
         if (players.isEmpty()) {
             System.out.println("当前没有玩家！");
@@ -319,14 +327,21 @@ public class AdminManager {
     public void queryGame() {
         List<Game> games = null;
         // 首先清空表中数据避免重复
-        String clearSQL = "truncate table game";
-        String sql =
-                "insert into game(g_name,g_count,g_countscore,g_countavg,g_gno,g_index) select s.pname g_name,s.count g_count,s.sumscore g_countscore,s.s_avg g_countavg,g_no g_gno,t_index g_index from t_grade g,(select name pname,count(s_id) count,sum(s_score) sumscore,AVG(s_score) s_avg from t_player p,t_score s where id = s_id group by s_id) as s where s.s_avg between l_value and h_value";
-        int count = dao.update(JDBCUtils.getConnection(), sql, null);
+        String clearSQL = SQLHelper.getSQL("clearGame");
+        dao.update(clearSQL);
+        // String sql =
+        // "insert into game(g_name,g_count,g_countscore,g_countavg,g_gno,g_index) select s.pname
+        // g_name,s.count g_count,s.sumscore g_countscore,s.s_avg g_countavg,g_no g_gno,t_index
+        // g_index from t_grade g,(select name pname,count(s_id) count,sum(s_score)
+        // sumscore,AVG(s_score) s_avg from t_player p,t_score s where id = s_id group by s_id) as s
+        // where s.s_avg between l_value and h_value";
+        String sql = SQLHelper.getSQL("insertGame");
+        int count = dao.update(sql);
         if (count > 0) {
             Menu.getSearchGame();
-            String qureySQL = "select g_name gName,g_gno gNo,g_index gIndex from game";
-            games = dao.getForList(JDBCUtils.getConnection(), Game.class, qureySQL, null);
+            // String qureySQL = "select g_name gName,g_gno gNo,g_index gIndex from game";
+            String qureySQL = SQLHelper.getSQL("searchGame");
+            games = dao.getForList(Game.class, qureySQL);
             if (games.size() > 0) {
                 for (int i = 0, len = games.size(); i < len; i++) {
                     System.out.print(games.get(i).getgName() + "\t" + games.get(i).getgCount()
@@ -344,16 +359,20 @@ public class AdminManager {
         Connection conn = JDBCUtils.getConnection();
         List<Game> games = null;
         // 首先清空表中数据避免重复
-        String clearSQL = "truncate table game";
-        dao.truncateData(conn, clearSQL);
-        String sql =
-                "insert into game(g_name,g_count,g_countscore,g_countavg,g_gno,g_index) select s.pname g_name,s.count g_count,s.sumscore g_countscore,s.s_avg g_countavg,g_no g_gno,t_index g_index from t_grade g,(select name pname,count(s_id) count,sum(s_score) sumscore,AVG(s_score) s_avg from t_player p,t_score s where id = s_id group by s_id) as s where s.s_avg between l_value and h_value";
-        int count = dao.update(conn, sql, null);
+        String clearSQL = SQLHelper.getSQL("clearGame");
+        String sql = SQLHelper.getSQL("insertGame");
+        try {
+            dao.truncateData(conn, clearSQL);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            JDBCUtils.closeResourse(null, null, conn);
+        }
+        int count = dao.update(sql);
         if (count > 0) {
             Menu.getScoreUI();
-            String qureySQL =
-                    "select g_name gName,g_countscore gCountScore,g_countavg gCountAvg,g_gno gNo,g_index gIndex from game";
-            games = dao.getForList(JDBCUtils.getConnection(), Game.class, qureySQL, null);
+            String qureySQL = SQLHelper.getSQL("qureyGame");
+            games = dao.getForList(Game.class, qureySQL);
             if (games.size() > 0) {// 玩家姓名\t\t游戏总分\t\t平均分数\t\t攻击力等级\t\t游戏指数
                 for (int i = 0, len = games.size(); i < len; i++) {
                     System.out.print(games.get(i).getgName() + "\t" + games.get(i).getgCountScore()
@@ -364,7 +383,5 @@ public class AdminManager {
         } else {
             System.out.println("当前还没有分数信息!\n");
         }
-        // 最后手动的关闭资源
-        JDBCUtils.closeResourse(null, null, conn);
     }
 }

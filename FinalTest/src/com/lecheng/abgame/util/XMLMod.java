@@ -8,7 +8,7 @@ import java.util.List;
 import org.dom4j.Document;
 import org.dom4j.Element;
 
-import com.lecheng.abgame.game.Bird;
+import com.lecheng.abgame.bean.Bird;
 
 /**
  * @author renjianyong 修改XML帮助类

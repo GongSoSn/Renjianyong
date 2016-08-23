@@ -1,6 +1,6 @@
 package com.lecheng.abgame.util;
 
-import com.lecheng.abgame.game.Bird;
+import com.lecheng.abgame.bean.Bird;
 import com.lecheng.abgame.game.DataInit;
 import com.lecheng.abgame.ui.Menu;
 

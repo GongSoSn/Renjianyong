@@ -30,7 +30,8 @@ public class AbGame {
             case 0:
                 // 退出登陆
                 System.out.println("系统正在退出，请稍后... ...");
-                return;
+                // 非零表示异常退出
+                System.exit(0);
             default:
                 this.start();
                 break;

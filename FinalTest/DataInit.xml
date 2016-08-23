@@ -3,17 +3,17 @@
 <data> 
   <birds> 
     <bird id="1"> 
-      <name>青峰大辉</name>  
+      <name>[红色小鸟]</name>  
       <gjValue>200</gjValue>  
       <hitValue>80</hitValue> 
     </bird>  
     <bird id="2"> 
-      <name>黄濑凉太</name>  
+      <name>[蓝色小鸟]</name>  
       <gjValue>180</gjValue>  
       <hitValue>60</hitValue> 
     </bird>  
     <bird id="3"> 
-      <name>赤司征十郎</name>  
+      <name>[黑色小鸟]</name>  
       <gjValue>200</gjValue>  
       <hitValue>85</hitValue> 
     </bird> 
