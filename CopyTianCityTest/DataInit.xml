@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<data> 
+  <birds> 
+    <bird id="1"> 
+      <name>[Hurk]</name>  
+      <gjValue>200</gjValue>  
+      <hitValue>80</hitValue> 
+    </bird>  
+    <bird id="2"> 
+      <name>[Lynn]</name>  
+      <gjValue>180</gjValue>  
+      <hitValue>60</hitValue> 
+    </bird>  
+    <bird id="3"> 
+      <name>[Kay]</name>  
+      <gjValue>200</gjValue>  
+      <hitValue>85</hitValue> 
+    </bird> 
+  </birds>  
+  <admin> 
+    <loginName>111</loginName>  
+    <passWord>111</passWord>  
+    <loginTimes>3</loginTimes> 
+  </admin> 
+</data>
