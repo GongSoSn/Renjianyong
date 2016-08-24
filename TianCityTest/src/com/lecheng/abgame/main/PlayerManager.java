@@ -77,10 +77,11 @@ public class PlayerManager {
                     System.out.println("\t游戏时间\t\t\t游戏分数");
                     String sql = SQLHelper.getSQL("queryScore");
                     List<Score> list = dao.getForList(Score.class, sql, player.getId());
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
                     if (list.size() > 0) {
                         for (int i = 0; i < list.size(); i++) {
-                            System.out.print(
-                                    " " + list.get(i).getTime() + "\t\t" + list.get(i).getScore());
+                            System.out.print(" " + format.format(list.get(i).getTime()) + "\t\t"
+                                    + list.get(i).getScore());
                             System.out.println();
                         }
                     }
