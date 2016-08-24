@@ -21,6 +21,6 @@
   <admin> 
     <loginName>111</loginName>  
     <passWord>111</passWord>  
-    <loginTimes>5</loginTimes> 
+    <loginTimes>3</loginTimes> 
   </admin> 
 </data>

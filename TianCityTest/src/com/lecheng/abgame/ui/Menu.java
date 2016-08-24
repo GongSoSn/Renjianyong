@@ -64,7 +64,7 @@ public class Menu {
         System.out.println("请选择任意的五个英雄作战！");
         for (Bird bird : init.initBird()) {
             System.out.println(bird.getId() + "." + bird.getBirdName() + "，攻击力为:"
-                    + bird.getGJValue() + ",命中率为:" + bird.getHitValue());
+                    + bird.getGJValue() + ",命中率为:" + bird.getHitValue() + "%");
         }
         System.out.println("******************************************");
         System.out.println("请选择:");
@@ -77,7 +77,7 @@ public class Menu {
         System.out.println("******************************************");
         for (Bird bird : init.initBird()) {
             System.out.println(bird.getId() + "." + bird.getBirdName() + "    攻击力: "
-                    + bird.getGJValue() + "    命中率: " + bird.getHitValue());
+                    + bird.getGJValue() + "    命中率: " + bird.getHitValue() + "%");
         }
         System.out.println("4.管理员姓名");
         System.out.println("5.管理员密码");
