@@ -1,0 +1,381 @@
+#headDiv {
+    width: 980px;
+    height: 130px;
+    background-color: #00FF00;
+    position: relative;
+    background: url(../images/h_bg.jpg) no-repeat -22px 0;
+}
+
+#hRightTopDiv {
+    width: 450px;
+    height: 40px;
+    /*background-color: #123FFF;*/
+    float: right;
+}
+
+#hRightTopDiv ul {
+    margin-top: 13px;
+    list-style: none;
+}
+
+#hRightTopDiv ul li {
+    /* float: left; */
+    /* width: 73px; */
+    /* height: 27px; */
+    /* font-weight: bold; */
+    font-size: 14px;
+}
+
+#hRightTopDiv a {
+    text-decoration: none;
+    color: black;
+    font: 12px;
+    margin-left: -50px;
+}
+
+#hRightTopDiv .image01 {
+    background-image: url(../images/shopcar.png);
+    background-repeat: no-repeat;
+    background-position: 2px 0px;
+    margin-left: -40px;
+    /* size: 40px; */
+    background-size: 19px;
+}
+
+#hRightTopDiv .image02 {
+    background-image: url(../images/服务中心.png);
+    background-repeat: no-repeat;
+    background-position: 2px 1px;
+    margin-left: -57px;
+    background-size: 19px;
+}
+
+#hRightTopDiv .image03 {
+    background-image: url(../images/买家中心.png);
+    background-repeat: no-repeat;
+    background-position: 2px 1px;
+    margin-left: -42px;
+    background-size: 17px;
+}
+
+#hRightTopDiv .image04 {
+    background-image: url(../images/商品分类.png);
+    background-repeat: no-repeat;
+    background-position: 2px 0px;
+    margin-left: -42px;
+    background-size: 17px;
+}
+
+#hRightTopDiv .text {
+    width: 57px;
+}
+
+#hRightTopDiv #login {
+    background-image: url(../images/登录.png);
+    background-repeat: no-repeat;
+    /* width: 87px; */
+    margin-left: 303px;
+    margin-top: -27px;
+    background-size: 40px;
+    /* background-position-y: -4px; */
+}
+
+#hRightTopDiv #loginTouch {
+    margin-left: 8px;
+    font-size: 6px;
+    font-weight: 500;
+}
+
+#hRightTopDiv #register {
+    background-image: url(../images/注册.png);
+    background-repeat: no-repeat;
+    /* width: 87px; */
+    margin-left: 350px;
+    margin-top: -27px;
+    background-size: 40px;
+    /* background-position-y: -4px; */
+}
+
+#hRightTopDiv #registerTouch {
+    margin-left: 8px;
+    font-size: 6px;
+    font-weight: 500;
+}
+
+#hRightBottomDiv {
+    width: 450px;
+    height: 20px;
+    /*background-color: #000000;*/
+    float: right;
+    top: 16px;
+    position: relative;
+    top: 80px;
+    left: 450px;
+}
+
+#middleDiv {
+    width: 980px;
+    height: 640px;
+    background-color: #A0A0A0;
+}
+
+#bottomDiv {
+    width: 980px;
+    height: 300px;
+    background-color: #0000DA;
+}
+
+#mLeftDiv {
+    width: 201px;
+    height: 640px;
+    background-color: #CC0000;
+    float: left;
+}
+
+#mTopDiv {
+    width: 526px;
+    height: 190px;
+    background-color: #66CCFF;
+    float: left;
+}
+
+#mBottomDiv {
+    width: 526px;
+    height: 450px;
+    background-color: #FFFFFF;
+    float: left;
+}
+#mBottomDiv #tb{
+
+	width: 400px;
+	height: 400px;
+}
+#mRightDiv {
+    width: 252px;
+    height: 640px;
+    background-color: #FFFFFF;
+    float: right;
+   /*background: url(../images/a_title.jpg) no-repeat -0px 0;*/ 
+
+    background-size: 100%;
+}
+#mRightDiv ul{
+	float: right;
+	width: 117px;
+	list-style: none;
+}
+#mRightDiv ul a{
+	text-decoration: none;
+	margin-left: -29px;
+}
+#headDiv {
+    width: 980px;
+    height: 130px;
+    background-color: #00FF00;
+    position: relative;
+    background: url(../images/h_bg.jpg) no-repeat -22px 0;
+}
+
+#hRightTopDiv {
+    width: 450px;
+    height: 40px;
+    /*background-color: #123FFF;*/
+    float: right;
+}
+
+#hRightTopDiv ul {
+    margin-top: 13px;
+    list-style: none;
+}
+
+#hRightTopDiv ul li {
+    float: left;
+    width: 73px;
+    height: 27px;
+    font-weight: bold;
+}
+
+#hRightTopDiv a {
+    text-decoration: none;
+    color: black;
+    font: 16px;
+    margin-left: -50px;
+}
+
+#hRightTopDiv .image01 {
+    background-image: url(../images/shopcar.png);
+    background-repeat: no-repeat;
+    background-position: 2px 0px;
+    margin-left: -40px;
+    /* size: 40px; */
+    background-size: 19px;
+}
+
+#hRightTopDiv .image02 {
+    background-image: url(../images/服务中心.png);
+    background-repeat: no-repeat;
+    background-position: 2px 1px;
+    margin-left: -57px;
+    background-size: 19px;
+}
+
+#hRightTopDiv .image03 {
+    background-image: url(../images/买家中心.png);
+    background-repeat: no-repeat;
+    background-position: 2px 1px;
+    margin-left: -42px;
+    background-size: 17px;
+}
+
+#hRightTopDiv .image04 {
+    background-image: url(../images/商品分类.png);
+    background-repeat: no-repeat;
+    background-position: 2px 0px;
+    margin-left: -42px;
+    background-size: 17px;
+}
+
+#hRightTopDiv .text {
+    width: 57px;
+}
+
+#hRightBottomDiv {
+    width: 450px;
+    height: 20px;
+    /*background-color: #000000;*/
+    float: right;
+    top: 16px;
+    position: relative;
+    top: 80px;
+    left: 450px;
+}
+
+#hSeachBar {
+    width: 980px;
+    height: 30px;
+    /*background-color: #008000;*/
+    float: right;
+    margin-top: 60px;
+}
+
+#hSeachBar {
+    width: 980px;
+    height: 30px;
+    /*background-color: #008000;*/
+    float: right;
+    margin-top: 60px;
+}
+
+#hSeachBar ul {
+    list-style: none;
+    padding-top: 10px;
+    margin-left: 18px;
+}
+
+#hSeachBar ul li {
+    float: left;
+    width: 86px;
+}
+
+#hSeachBar ul a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+}
+
+#hSeachBar ul #li01 {
+    margin-left: -57px;
+}
+
+#hSeachBar ul #li02 {
+    margin-left: 34px;
+}
+
+#hSeachBar ul #li03 {
+    margin-left: 132px;
+}
+
+#hSeachBar ul #li04 {
+    margin-left: 218px;
+}
+
+#hSeachBar ul #li05 {
+    margin-left: 288px;
+}
+
+#hSeachBar ul #li06 {
+    margin-left: 386px;
+}
+
+#hSeachBar ul #li07 {
+    margin-left: 456px;
+}
+
+#hSeachBar ul #li08 {
+    margin-left: 542px;
+}
+
+#hSeachBar ul .top {
+    margin-top: -20px;
+}
+
+#middleDiv {
+    width: 980px;
+    height: 640px;
+    background-color: #A0A0A0;
+}
+
+#bottomDiv {
+    width: 980px;
+    height: 300px;
+    background-color: #0000DA;
+}
+
+#mLeftDiv {
+    width: 201px;
+    height: 640px;
+    /*background-color: #CC0000;*/
+    float: left;
+    background-image: url(../images/商品分类.gif);
+    background-repeat: no-repeat;
+}
+
+#leftFirst ul {
+    margin-left: -29px;
+}
+
+#leftFirst ul li {
+    float: left;
+    width: 60px;
+    padding-top: 5px;
+    height: 20px;
+    list-style: none;
+}
+
+#leftFirst ul a {
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+}
+
+#leftFirst .title {
+    width: 200px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #ff7300;
+    padding-left: 20px;
+    padding-top: 5px;
+    margin-top: 17px;
+}
+
+#mTopDiv {
+    width: 526px;
+    height: 190px;
+    background-color: #66CCFF;
+    float: left;
+    background-image: url(../images/ad-02.jpg);
+}
+
+
+
