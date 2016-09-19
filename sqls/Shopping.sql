@@ -2,6 +2,10 @@ create database shopping;
 
 use shopping;
 
+show tables;
+/***********************************************************************************************************************/
+/***********************************************************************************************************************/
+/***********************************************************************************************************************/
 /*创建admin表*/
 create table admin(
 	id int not null primary key,
@@ -10,8 +14,18 @@ create table admin(
 	truename varchar(20) not null
 );
 
-desc admin;
+alter table admin change id id int not null auto_increment;
 
+alter table admin change nameger manager varchar(20) not null;
+
+insert into admin values(null,'Wade','123','wade');
+
+select * from admin;
+
+desc admin;
+/***********************************************************************************************************************/
+/***********************************************************************************************************************/
+/***********************************************************************************************************************/
 /*创建订单表tb_order*/
 create table tb_order(
 	o_id int(11) not null primary key,
@@ -27,6 +41,8 @@ create table tb_order(
 
 alter table tb_order add column create_time datetime;
 
+alter table tb_order modify o_id int(11) not null auto_increment;
+
 desc tb_order;
 
 /*创建公告表tb_bulletin*/
@@ -41,6 +57,7 @@ create table tb_bulletin(
 
 alter table tb_bulletin add column update_man int(11);
 alter table tb_bulletin add column update_time datetime;
+alter table tb_bulletin modify b_id int(11) not null auto_increment;
 
 desc tb_bulletin;
 
@@ -62,6 +79,8 @@ create table tb_goods(
     constraint fk_gp foreign key(g_supid) references tb_sup(s_supid)
 );
 
+alter table tb_goods modify g_id int(11) not null auto_increment;
+
 desc tb_goods;
 
 /*创建小分类表tb_sub*/
@@ -75,8 +94,15 @@ create table tb_sub(
 	constraint fk_ba foreign key(create_man) references admin(id)
 );
 
+alter table tb_sub modify s_id int(11) not null auto_increment;
+
 desc tb_sub;
 
+select * from tb_sub;
+
+insert into tb_sub values(null,'戴尔电脑',3,2,'2012-09-08');
+/****************************************************************************************************************************/
+/****************************************************************************************************************************/
 /*创建大分类表tb_sup*/
 create table tb_sup(
 	s_supid int(11) not null primary key,
@@ -86,7 +112,23 @@ create table tb_sup(
 	constraint fk_pa foreign key(create_man) references admin(id)
 );
 
+set foreign_key_checks = 0;
+
+set foreign_key_checks = 1;
+
+SELECT  @@FOREIGN_KEY_CHECKS;
+
+alter table tb_sup change s_supid s_supid int(11) not null auto_increment; 
+
 desc tb_sup;
+
+select * from tb_sup;
+
+select * from tb_sup order by  limit 0,5;
+
+insert into tb_sup values(null,'武器',3,'2016-12-09');
+
+select * from admin;
 
 /*创建系统用户表tb_sysuser*/
 create table tb_sysuser(
@@ -107,5 +149,43 @@ create table tb_sysuser(
 	update_time datetime
 );
 
+
 desc tb_sysuser;
+
+alter table tb_sysuser modify s_birth varchar(20);
+
+select * from tb_sysuser;
+
+select * from tb_sysuser order by s_id DESC limit 0,5;
+
+delete from tb_sysuser where s_id = 1;
+
+insert into tb_sysuser values(null,'科比','科比·布莱恩特','1212',1,'2016-09-25',1234567,'123456@163.com',18366667778,'洛杉矶',1,1001,'2015-10-28',1003,'2015-10-28');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
