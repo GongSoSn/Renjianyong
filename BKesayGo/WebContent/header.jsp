@@ -51,9 +51,9 @@
 
  <!-- 2015-12-28 下午 -->
         <% 
-            Date nowDay = new Date();
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String loginDate = format.format(nowDay);
+        Date nowDay = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String loginDate = format.format(nowDay);
         %>
         
         <%= loginDate %>

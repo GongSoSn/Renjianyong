@@ -18,12 +18,12 @@ public class Sub {
     // constraint fk_bp foreign key(s_supid) references tb_sup(s_supid),
     // constraint fk_ba foreign key(create_man) references admin(id)
     // );
-    private int s_id;
+    private int    s_id;
     private String s_name;
-    // private int s_supid;
-    private Sup sup;
-    // private int create_man;
-    private Admin admin;
+    private int    s_supid;
+    // private Sup sup;
+    private int    create_man;
+    // private Admin admin;
 
     public int getS_id() {
         return s_id;
@@ -41,20 +41,21 @@ public class Sub {
         this.s_name = s_name;
     }
 
-    public Sup getSup() {
-        return sup;
+    public int getS_supid() {
+        return s_supid;
     }
 
-    public void setSup(Sup sup) {
-        this.sup = sup;
+    public void setS_supid(int s_supid) {
+        this.s_supid = s_supid;
     }
 
-    public Admin getAdmin() {
-        return admin;
+    public int getCreate_man() {
+        return create_man;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public void setCreate_man(int create_man) {
+        this.create_man = create_man;
     }
+
 
 }

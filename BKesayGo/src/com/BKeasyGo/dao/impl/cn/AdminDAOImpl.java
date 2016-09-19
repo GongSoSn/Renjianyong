@@ -25,7 +25,7 @@ public class AdminDAOImpl implements AdminDAO {
         List<Admin> admins = new ArrayList<>();
         Admin admin = null;
         String sql = "select * from admin where manager = ? and password = ?";
-        list = db.getAdminList(obj, sql);
+        list = db.getQueryResultList(obj, sql);
         int count = list.size();
         if (count > 0) {
             admin = new Admin();

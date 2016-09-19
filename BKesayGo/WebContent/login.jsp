@@ -1,3 +1,5 @@
+<%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
@@ -62,14 +64,29 @@
                 <tr>
                     <td>用户名：</td>
                     <td>
-                        <input type="text" name="userName" onfocus="gogo('userName')" onblur="checkName()">
+                        <input type="text" name="userName" value="${cookie.userName.value }" onfocus="gogo('userName')" onblur="checkName()">
                     </td>
                     <td id="resuName"></td>
                 </tr>
                 <tr>
                     <td>登录密码：</td>
                     <td>
-                        <input type="password" name="pwd" onfocus="gogo('resuPwd')" onblur="checkPwd()">
+                    <%
+                        Cookie[] cookies = request.getCookies();
+                        Map<String, String> map = null;
+                        if (cookies != null && cookies.length > 0) {
+                            map = new HashMap<String, String>();
+                            for (int i = 0; i < cookies.length; i++) {
+                                String name = cookies[i].getName();
+                                String value = cookies[i].getValue();
+                                map.put(name, value);
+                            }
+                        } else {
+                            map = new HashMap<String, String>();
+                            map.put("password", "");
+                        }
+                    %>
+                        <input type="password" name="pwd" value="<%=map.get("password")%>" onfocus="gogo('resuPwd')" onblur="checkPwd()">
                     </td>
                     <td id="resuPwd"></td>
                 </tr>
@@ -78,12 +95,15 @@
                     <td>
                         <input type="text" id="idenfitying" name="idenfitying">
                     </td>
-                    <td><img id="kaptchaImge" src="kaptcha.jpg"><span id="resuImg"></span></td>
+                    <td><img id="kaptchaImge" src="kaptchaServlet"><span id="resuImg"></span></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
                         <input type="image" src="images/login.gif" onclick="return checkAll()">
+                    </td>
+                    <td>
+                        <input type="checkbox" name="flag" value="Yes">是否记住密码？
                     </td>
                     <td><a href="forget_pwd.jsp">忘记密码？</a> <a href="reset_pwd.jsp">修改密码</a></td>
                 </tr>

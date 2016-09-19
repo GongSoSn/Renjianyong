@@ -20,15 +20,15 @@ import com.mysql.jdbc.ResultSetMetaData;
  */
 
 public class DBUtils {
-    private final String url = "jdbc:mysql://localhost:3306/shopping?useSSL=false";
-    private final String user = "root";
+    private final String url      = "jdbc:mysql://localhost:3306/shopping?useSSL=false";
+    private final String user     = "root";
     private final String password = "123456";
-    private final String driver = "com.mysql.jdbc.Driver";
-
-    private Connection conn;
-    PreparedStatement ps;
-    ResultSet rs;
-
+    private final String driver   = "com.mysql.jdbc.Driver";
+    
+    private Connection   conn;
+    PreparedStatement    ps;
+    ResultSet            rs;
+    
     // 获取数据库连接对象
     public Connection getConn() {
         try {
@@ -39,7 +39,7 @@ public class DBUtils {
         }
         return conn;
     }
-
+    
     // 关闭数据库相关资源
     public void closeResources(ResultSet rs, PreparedStatement ps, Connection conn) {
         if (rs != null) {
@@ -64,7 +64,7 @@ public class DBUtils {
             }
         }
     }
-
+    
     // update
     public int update(String sql, Object[] obj) {
         conn = this.getConn();
@@ -84,36 +84,66 @@ public class DBUtils {
         }
         return count;
     }
-
+    
     // Query
-    public List<Map<String, String>> getAdminList(Object[] obj, String sql) {
+    public List<Map<String, String>> getQueryResultList(Object[] obj, String sql) {
         conn = this.getConn();
         List<Map<String, String>> list = new ArrayList<>();
         Map<String, String> map = null;
         try {
-            if (obj != null) {
-                ps = conn.prepareStatement(sql);
+            ps = conn.prepareStatement(sql);
+            if (obj != null && obj.length > 0) {
                 for (int i = 0, len = obj.length; i < len; i++) {
                     ps.setObject(i + 1, obj[i]);
                 }
-                rs = ps.executeQuery();
-                ResultSetMetaData rsdm = (ResultSetMetaData) rs.getMetaData();
-                int count = rsdm.getColumnCount();
-                if (count > 0) {
-                    while (rs.next()) {
-                        map = new HashMap<String, String>();
-                        for (int i = 1; i <= count; i++) {
-                            map.put(rsdm.getColumnLabel(i), rs.getObject(i) + "");
-                        }
-                        list.add(map);
+            }
+            rs = ps.executeQuery();
+            ResultSetMetaData rsdm = (ResultSetMetaData) rs.getMetaData();
+            int count = rsdm.getColumnCount();
+            if (count > 0) {
+                while (rs.next()) {
+                    map = new HashMap<String, String>();
+                    for (int i = 1; i <= count; i++) {
+                        map.put(rsdm.getColumnLabel(i), rs.getObject(i) + "");
                     }
+                    list.add(map);
                 }
             }
-        } catch (
-
-        SQLException e) {
+            
+        } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            // 关闭资源
+            this.closeResources(rs, ps, conn);
         }
         return list;
     }
+    
+    // public void getColumnName(String sql, Object... params) {
+    // conn = this.getConn();
+    // try {
+    // int len = params.length;
+    // if (len > 0) {
+    // for (int i = 0; i < len; i++) {
+    // ps.setObject(i + 1, params[i]);
+    // }
+    // }
+    // ps = conn.prepareStatement(sql);
+    // rs = ps.executeQuery();
+    // // 获取元数据
+    // ResultSetMetaData rsmd = (ResultSetMetaData) rs.getMetaData();
+    //
+    // int count = rsmd.getColumnCount();
+    // if (count > 0) {
+    // for (int i = 1; i <= count; i++) {
+    // Map names =
+    // }
+    // }
+    //
+    //
+    //
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // }
+    // }
 }

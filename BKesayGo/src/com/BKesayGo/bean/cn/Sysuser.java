@@ -3,8 +3,6 @@
  */
 package com.BKesayGo.bean.cn;
 
-import java.util.Date;
-
 /**
  * @author Renjianyong
  *
@@ -27,21 +25,21 @@ public class Sysuser {
     // update_man int(11),
     // update_time datetime
     // );
-    private int s_id;
+    private int    s_id;
     private String s_username;
     private String s_truename;
     private String s_pwd;
-    private int s_sex;
-    private Date s_birth;
+    private int    s_sex;
+    private String s_birth;
     private String s_idcard;
     private String s_email;
     private String s_phone;
     private String s_address;
-    private int s_if;
-    private int create_man;
-    private Date create_time;
-    private int update_man;
-    private Date update_time;
+    private int    s_if;
+    private int    create_man;
+    private String create_time;
+    private int    update_man;
+    private String update_time;
 
     public Sysuser() {}
 
@@ -85,11 +83,11 @@ public class Sysuser {
         this.s_sex = s_sex;
     }
 
-    public Date getS_birth() {
+    public String getS_birth() {
         return s_birth;
     }
 
-    public void setS_birth(Date s_birth) {
+    public void setS_birth(String s_birth) {
         this.s_birth = s_birth;
     }
 
@@ -141,11 +139,11 @@ public class Sysuser {
         this.create_man = create_man;
     }
 
-    public Date getCreate_time() {
+    public String getCreate_time() {
         return create_time;
     }
 
-    public void setCreate_time(Date create_time) {
+    public void setCreate_time(String create_time) {
         this.create_time = create_time;
     }
 
@@ -157,11 +155,11 @@ public class Sysuser {
         this.update_man = update_man;
     }
 
-    public Date getUpdate_time() {
+    public String getUpdate_time() {
         return update_time;
     }
 
-    public void setUpdate_time(Date update_time) {
+    public void setUpdate_time(String update_time) {
         this.update_time = update_time;
     }
 
