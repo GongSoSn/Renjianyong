@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Student-Creator</title>
+
+
+<script type="text/javascript">
+	window.onload = function() {
+		//1.获取 addBtn 按钮
+		var addBtn = document.getElementById("addBtn");
+		//2.为 addBtn 添加点击事件
+		addBtn.onclick = function(){
+			//创建 <tr>
+			var trNode = document.createElement("tr");
+			//tr 节点的父节点
+			var tbodyNode = document.getElementById("parent");
+			//在 tbody 节点最后添加 <tr>
+			tbodyNode.appendChild(trNode);
+			//创建 tb 节点  (6个)
+			/* var tb1 = document.createElement("tb"); */
+			for(var i = 0;i < 6; i ++){
+				//首列
+				if(i == 0){
+					var tb = document.createElement("tb");
+					//创建文本节点
+					var textNode = document.createTextNode((i + 1));
+					//添加 文本节点
+					tb.appendChild(textNode);
+					/* tb.setAttribute('bgcolor','#1233') */
+					trNode.appendChild(tb);
+				}else if(i == 4){
+					var tb = document.createElement("tb");
+					var btn = document.createElement("button");
+					btn.value = "Mod";
+					var textNode = document.createTextNode("Mod");
+					tb.appendChild(btn);
+					btn.appendChild(textNode);
+					trNode.appendChild(tb);
+				}else if(i == 5){
+					var tb = document.createElement("tb");
+					var btn = document.createElement("button");
+					btn.value = "Del";
+					var textNode = document.createTextNode("Del");
+					btn.appendChild(textNode);
+					tb.appendChild(btn);
+					/* tb.setAttribute('bgcolor','#1233') */
+					trNode.appendChild(tb);
+				}else{
+					var tb = document.createElement("tb");
+					//弹框 == >输入信息(此列中)
+					var str = document.getElementById("template").getElementsByTagName("th")[i].firstChild.nodeValue;
+					var msg = prompt("请输入需要添加的" + str + ".. ..");
+					var textNode = document.createTextNode(msg);
+					tb.appendChild(textNode);
+					/* tb.setAttribute('bgcolor','#1233') */
+					trNode.appendChild(tb);
+				}
+			}
+			/* return false; */
+		}
+	}
+</script>
+
+</head>
+<body>
+	<button id="addBtn">Add Student</button>
+	<table id="studnetTable" border ="1" cellpadding ="5" cellspacing =0>
+		<tbody id="parent">
+			<tr id="template">
+				<th>ID</th>
+				<th>Name</th>
+				<th>Class</th>
+				<th>Age</th>
+				<th>Modify</th>
+				<th>Delete</th>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

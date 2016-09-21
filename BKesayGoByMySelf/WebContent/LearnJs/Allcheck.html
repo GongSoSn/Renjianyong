@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>全选 / 反选</title>
+<script type="text/javascript">
+
+	window.onload = function(){
+		//1.为Button 添加点击事件
+		var Btn = document.getElementById("Btn");
+		var checks = document.getElementsByName("name");
+		var len = checks.length;
+		Btn.onclick = function(){
+			for(var i = 0; i < len; i ++){
+				//如果选中
+				if(checks.item(i).checked){
+					checks.item(i).checked = "";
+				}else{
+					checks.item(i).checked = "checked";
+				}
+			}
+			
+			return false;
+		}
+	}
+
+</script>
+</head>
+<body>
+	<input type = "checkbox" name = "name"/> AA <br>
+	<input type = "checkbox" name = "name"/> BB <br>
+	<input type = "checkbox" name = "name"/> CC <br>
+	<input type = "checkbox" name = "name"/> DD <br>
+	<input type = "checkbox" name = "name"/> EE <br>
+	
+	<input type = "submit" value = "Submit" id = "Btn"/>
+</body>
+</html>

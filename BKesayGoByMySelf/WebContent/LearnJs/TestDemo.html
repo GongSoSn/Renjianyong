@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Temp</title>
+<script type="text/javascript">
+
+	window.onload = function(){
+		var white = "";
+		var test = " --adad---      "
+		alert(test);
+		var reg = /^\s*|\s*/g;
+		alert(test.replace(reg, ""));
+	}
+
+</script>
+</head>
+<body>
+	<p>你喜欢哪个城市?</p>
+	<ul id="city">
+		<li id="bj">北京</li>
+		<li>上海</li>
+		<li>东京</li>
+		<li>首尔</li>
+	</ul>
+
+	<br>
+	<br>
+	<p>你喜欢哪款单机游戏?</p>
+	<ul id="game">
+		<li id="rl">红警</li>
+		<li>实况</li>
+		<li>极品飞车</li>
+		<li>魔兽</li>
+	</ul>
+
+	<br>
+	<br> 添加条目:
+	<br>
+	<input type="radio" name="type" /> City
+	<input type="radio" name="type" /> Game
+	<input type="text" id="text" value="" />
+	<br>
+	<input type="submit" id="subBtn" value="Submit" />
+</body>
+</html>

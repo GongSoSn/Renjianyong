@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Student - Creator</title>
+<script type="text/javascript">
+	window.onload = function() {
+
+		function removeTr(aNoe) {
+
+			/* var trNode = aNoe.parentNode.parentNode; */
+			var trNode = aNoe.parentNode;
+
+			var textContent = trNode.getElementsByTagName("td")[1].firstChild.nodeValue;
+			textContent = trim(textContent);
+
+			var flag = confirm("确定要删除 <" + textContent + "> 的信息吗?");
+			if (flag) {
+				trNode.parentNode.removeChild(trNode);
+			}
+
+			return false;
+		}
+		//修改
+		function modifyTr(target) {
+		/* 	var trNode = target.parentNode.parentNode; */
+		var trNode = target.parentNode;
+			var textContent = trNode.getElementsByTagName("td")[1].firstChild.nodeValue;
+			textContent = trim(textContent);
+
+			var flag = confirm("确定要修改  <" + textContent + "> 的信息吗?");
+			if (flag) {
+
+				var nameVal = prompt("请输入需要添加的 Name");
+				var classVal = prompt("请输入需要添加的 Class");
+				var ageVal = prompt("请输入需要添加的 Age");
+
+				trNode.getElementsByTagName("td")[1].firstChild.nodeValue = nameVal;
+				trNode.getElementsByTagName("td")[2].firstChild.nodeValue = classVal;
+				trNode.getElementsByTagName("td")[3].firstChild.nodeValue = ageVal;
+				return false;
+			}
+		}
+
+		//为 addBtn 添加点击事件
+		var count = 1;
+		document.getElementById("addBtn").onclick = function() {
+
+			var idVal = count++;
+			var nameVal = prompt("请输入需要添加的 Name");
+			var classVal = prompt("请输入需要添加的 Class");
+			var ageVal = prompt("请输入需要添加的 Age");
+
+			var idTd = document.createElement("td");
+			var nameTd = document.createElement("td");
+			var classTd = document.createElement("td");
+			var ageTd = document.createElement("td");
+
+			idTd.appendChild(document.createTextNode(idVal));
+			nameTd.appendChild(document.createTextNode(nameVal));
+			classTd.appendChild(document.createTextNode(classVal));
+			ageTd.appendChild(document.createTextNode(ageVal));
+
+			var tr = document.createElement("tr");
+
+			tr.appendChild(idTd);
+			tr.appendChild(nameTd);
+			tr.appendChild(classTd);
+			tr.appendChild(ageTd);
+
+			alert("OK");
+
+			var mTd = document.createElement("td");
+
+			var modBtn = document.createElement("button");
+			modBtn.id = "Mod";
+			modBtn.appendChild(document.createTextNode("Mod"));
+
+			mTd.appendChild(modBtn);
+			tr.appendChild(mTd);
+
+			mTd.onclick = function(){
+				modifyTr(this);
+				return false;
+			}
+			
+			var dTd = document.createElement("td");
+			var delBtn = document.createElement("button");
+			delBtn.id = "Del";
+			delBtn.appendChild(document.createTextNode("Del"));
+
+			dTd.appendChild(delBtn);
+			tr.appendChild(dTd);
+
+			dTd.onclick = function() {
+				removeTr(this);
+				return false;
+			}
+
+			document.getElementById("studnetTable").getElementsByTagName(
+					"tbody")[0].appendChild(tr);
+		}
+
+		function trim(str) {
+			var reg = /^\s*|\s*$/g;
+			return str.replace(reg, "");
+		}
+	}
+</script>
+</head>
+<body>
+	<button id="addBtn">Add Student</button>
+	<table id="studnetTable" border="1" cellpadding="5" cellspacing=0>
+		<tbody id="parent">
+			<tr id="template">
+				<th>ID</th>
+				<th>Name</th>
+				<th>Class</th>
+				<th>Age</th>
+				<th>Modify</th>
+				<th>Delete</th>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

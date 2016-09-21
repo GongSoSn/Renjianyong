@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/*
+	 * 为 #employeetable 的所有的 a 节点添加 Onclick 响应函数:
+	 * 1. 弹出确认对话框: 确定要删除 xx 的信息吗? xx 为当前 a 节点所在的 td 所在的 tr 的
+	 * 第一个 td 子节点的文本值, 且要去除前后空格.
+	 * 2. 若点击 "确认" , 则删除 a 节点的所在的 行
+	 */
+
+	window.onload = function() {
+		//1.获取 #employeetable下的所有的  a 节点
+		var empTb = document.getElementById("employeetable");
+		var aNodes = empTb.getElementsByTagName("a");
+		var aLen = aNodes.length;
+		//2.为每一个 a 节点添加响应函数
+		for (var i = 0; i < aLen; i++) {
+			aNodes[i].onclick = function() {
+				//获取当前 a 节点的父节点
+				var parent = this.parentNode.parentNode;
+				var firstTb = parent.childNodes[1];
+				var tbText = firstTb.firstChild.nodeValue;
+				var flag = confirm("确定要删除" + tbText + "信息吗？");
+				return false;
+			}
+		}
+
+	}
+</script>
+</head>
+<body>
+
+	<center>
+		<br> <br> 添加新员工 <br> <br> name: <input type="text"
+			name="name" id="name" />&nbsp;&nbsp; email: <input type="text"
+			name="email" id="email" />&nbsp;&nbsp; salary: <input type="text"
+			name="salary" id="salary" /> <br> <br>
+		<button id="addEmpButton" value="abc">Submit</button>
+		<br> <br>
+		<hr>
+		<br> <br>
+		<table id="employeetable" border="1" cellpadding="5" cellspacing=0>
+			<tbody>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Salary</th>
+					<th>&nbsp;</th>
+				</tr>
+				<tr>
+					<td>Tom</td>
+					<td>tom@tom.com</td>
+					<td>5000</td>
+					<td><a href="deleteEmp?id=001">Delete</a></td>
+				</tr>
+				<tr>
+					<td>Jerry</td>
+					<td>jerry@sohu.com</td>
+					<td>8000</td>
+					<td><a href="deleteEmp?id=002">Delete</a></td>
+				</tr>
+				<tr>
+					<td>Bob</td>
+					<td>bob@tom.com</td>
+					<td>10000</td>
+					<td><a href="deleteEmp?id=003">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</center>
+
+</body>
+</html>
